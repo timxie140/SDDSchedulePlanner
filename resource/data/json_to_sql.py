@@ -45,3 +45,22 @@ def class_output(x, y, judge=True):
     else:
         temp += y["credit"] + "\");\n"
     return temp
+
+for x, y in enumerate(data.values()):
+    if x == len(data.values())-1:
+        result += class_output(x, y, False)
+    else:
+        result += class_output(x, y)
+result += "INSERT INTO `sections`(`id`, `class_id`,`section_num`, `crn`, `prof`) VALUES \n"
+count = 0
+for x, y in enumerate(data.values()):
+    for i, j in enumerate(y["sections"]):  # loop through every section in the class
+        result += "(" + str(count) + ", " + str(x) + ", \""  # count & id
+        result += j[0] + "\", \""  # section number
+        result += j[1] + "\", \""  # crn
+        if x == len(data.values())-1:
+            result += j[2] + "\"); \n"  # prof
+        else:
+            result += j[2] + "\"), \n"  # prof
+        count += 1
+result_file.write(result)
