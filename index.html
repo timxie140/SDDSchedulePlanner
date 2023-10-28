@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Schedule Planner</title>
+	<link rel="stylesheet" type="text/css" href="resource/css/welcome_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
+</head>
+<body>
+	<main class="text-white">
+		<canvas id="check"></canvas>
+		<h1 id="title"><a href="#siteDesc">Schedule Planner</a></h1>
+		<p id="titleSubText"><a href="#siteDesc">Click to begin!</a></p>
+
+	</main>
+	<div id="siteDesc">
+		<h1 id="homeHeader">What is SchedulePlanner?</h1>
+
+		<div id="rateClassSection">
+			<div class="sectionLeftSide">
+				<h2 id="rateHeader">Add Courses and Personl Events</h2>
+				<p class="moreSubText">You will be able to add courses and your own event to your schedule to have a better idea about your schedule. </p>
+				<a class="clickRedirect" href="rate.php">Click here to add a course</a>
+			</div>
+		</div>
+
+		<div id="viewClassSection">
+			<div class="sectionLeftSide">
+				<h3 id="viewHeader">View Courses</h3>
+				<p class="moreSubText">You have the ability to look up any course. You can input the course name or course code to find course(s) you desired. And you will then be able to add them to your schedule.</p>
+				<a class="clickRedirect" href="view.php">Click here to view a course</a>
+			</div>
+		</div>
+
+		<div id="analyzeScheduleSection">
+			<div class="sectionLeftSide">
+				<h3 id="analyzeHeader">Analyze Schedule</h3>
+				<p class="moreSubText">Our schedule tool will help you check for any conflicts and provide a optimized course schedule for you.</p>
+				<a class="clickRedirect" href="analysis.php">Click here to analyze your schedule</a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<script src="resource/js/welcome_main.js"></script>
+	<script src="resource/js/jquery-3.6.1.min.js"></script>
+</body>
+</html>
