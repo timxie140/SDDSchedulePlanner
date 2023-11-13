@@ -146,3 +146,43 @@ li {
 li:hover {
     background-color: #e0e0e0;
 }
+
+.search-bar {
+    position: absolute;
+    align-items: center;
+    top: 2.5vh;
+    right: 1.5vh;
+  }
+  
+  #search-input {
+    font-size: 1.7vh;
+    width: 0;
+    overflow-x: auto;
+    border: none;
+    outline: none;
+    padding: 0.4vh;
+    background-color: transparent;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  #search-button {
+    padding: 0.4vh;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  
+  #search-button:focus {
+    outline: none;
+  }
+  
+  #search-button i {
+    font-size: 2.7vh;
+  }
+  
+  #search-text-width {
+    display: inline-block; 
+    visibility: hidden; 
+    position: absolute;
+    white-space: nowrap; /* Ensures the text doesn't wrap to the next line */
+  }
