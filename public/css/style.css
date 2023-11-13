@@ -37,3 +37,38 @@
     text-shadow: 1px 1px 2px #aaa; 
     margin: 3vh 1.5vh; 
 }
+
+/* For body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+/* For container that include major and courses list */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+}
+  
+#major-panel {
+    margin-top: 0.8vh; 
+    width: 46vh; 
+    border: 1px solid #e0e0e0; /* Adds a border around the entire course list */
+    border-radius: 0.4vh; /* Rounded edges */
+    box-shadow: 2px 2px 0.4vh rgba(0, 0, 0, 0.1); /* A subtle shadow */
+    overflow: hidden; /* ensure no child element will overflow */
+    height: 87vh;
+    overflow-y: auto;    /* This allows vertical scrolling */
+    padding: 0.8vh; 
+    margin-left: 3vh;
+}
+  
+#majors {
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+    font-family: Arial, sans-serif;
+    font-size: 1.55vh;
+    list-style-type: none; /* Removes the default bullet points */
+}
