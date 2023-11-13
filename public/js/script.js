@@ -89,3 +89,57 @@ class mainPage {
         }
     }
 }
+
+/**
+ * class for create a course object and extract it to a html element
+ */
+class Course {
+    constructor (CRN, courseTime, sec, id, title, instructor_or_description, type, color, session, rem, showNotification = true) {
+        this.CRN = CRN;
+        this.courseTimes = courseTime;
+        this.sec = sec;
+        this.major = id.substring(0, 4);
+        this.id = id;
+        this.title = title;
+        this.fullTitle = id + '-' + sec + ' ' + title;
+        this.instructor_or_description = instructor_or_description;
+        this.type = type;
+        this.color = color;
+        this.session = session;
+        this.rem = rem;
+        this.showNotification = showNotification;
+    }
+
+    /**
+     * function to take one course(by it's CRN) out and organize it in html
+     * @returns {String} - The String Representing The Well Formated HTML Element.
+     */
+    extractACourse() {
+        if (this.instructor_or_description === '') {
+            this.instructor_or_description = 'TBA';
+        }
+        let course;
+        if (this.courseTimes.length > 1) {
+            if (Number.isInteger(this.courseTimes[0][1].start)) {
+                this.courseTimes = timeConverter.formatDaysTime(this.courseTimes);
+            }
+            const timeDayString = this.courseTimes.map(time => `${time[0]} ${time[1].start} - ${time[1].end}`).join(', ');
+            course = `<li id="${this.fullTitle}" onclick="addMultipleTimeEvent('${this.major}', '${this.CRN}', 
+            '${this.fullTitle}', '${this.instructor_or_description}', 'academic')"><strong>${this.fullTitle}</strong><br>Instructor(s): ${this.instructor_or_description}<br><br>
+            <span>Time: ${timeDayString}</span><br><br>Seat Remaining: ${this.rem}</li>`;
+        }
+        else if (this.courseTimes.length === 0) {
+            course = `<li id="${this.fullTitle}" onclick="addEvent('${this.CRN}', 'none', 'none', 'none', '${this.fullTitle}', '${this.instructor_or_description}', 'academic', 'none', ${0})"><strong>${this.fullTitle}</strong><br>
+            Instructor(s): ${this.instructor_or_description}<br><br><span>Time: TBA - TBA</span><br><br>Seat Remaining: ${this.rem}</li>`;
+        }
+        else{
+            if (this.courseTimes[0][0].length === 1) {
+                this.courseTimes[0][0] = timeConverter.convertDaysToFull(this.courseTimes[0][0]);
+            }
+            course = `<li id="${this.fullTitle}" onclick="addEvent('${this.CRN}', '${this.courseTimes[0][0]}', 
+            '${timeConverter.formatTime(this.courseTimes[0][1].start)}', '${timeConverter.formatTime(this.courseTimes[0][1].end)}', '${this.fullTitle}', '${this.instructor_or_description}', 'academic', 'none', ${0})"><strong>${this.fullTitle}</strong><br>
+            Instructor(s): ${this.instructor_or_description}<br><br><span>Time: ${this.courseTimes[0][0]} ${timeConverter.formatTime(this.courseTimes[0][1].start)} - ${timeConverter.formatTime(this.courseTimes[0][1].end)}</span><br><br>Seat Remaining: ${this.rem}</li>`;
+        }
+        return course;
+    }
+}
