@@ -88,6 +88,29 @@ class mainPage {
             this.coursesDiv.innerHTML = '';
         }
     }
+
+    /**
+     * sort Course List by Alphabetical order
+     * @param {String} listId - The list id in string.
+     */
+    sortList(listId) {
+        // Select the ul element
+        let ul = document.getElementById(listId);
+
+        // Get the li elements as an array and sort them
+        let sortedLis = Array.from(ul.children).sort((a, b) => {
+            // Compare the text content of the list items
+            return a.textContent.localeCompare(b.textContent);
+        });
+
+        // Remove the current li elements from the ul
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
+
+        // Append the sorted list items to the ul
+        sortedLis.forEach(li => ul.appendChild(li));
+    }
 }
 
 /**
