@@ -72,3 +72,77 @@ body {
     font-size: 1.55vh;
     list-style-type: none; /* Removes the default bullet points */
 }
+
+#majors li {
+    padding: 0.8vh 1.2vh; /* Adds spacing inside each list item */
+    cursor: pointer; 
+    border: 1px solid #e0e0e0; /* Adds a bottom border to each list item */
+    border-radius: 0.4vh;
+    margin-bottom: 0.7vh;
+    transition: background-color 0.3s ease; /* This will smooth the background color change on hover */
+}
+  
+#majors li:last-child {
+    margin-bottom: 0; /* Removes the bottom margin on the last list item */
+}
+  
+.major-selected {
+    background-color: #c0bebe;
+}
+
+.course-panel {
+    justify-content: center; 
+    align-items: center;     /* Vertically centers the content */
+    width: calc(100% - 47vh);
+    height: 88.7vh; 
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: relative; 
+    margin-top: 0.9vh;
+    margin-left: 0.8vh;
+    right: 0;
+}
+  
+#courses {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    left: 0vh;
+}
+  
+.course-panel li{
+    list-style-type: none;
+    padding: 1vh;
+    margin-bottom: 0.4vh;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.4vh;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: calc(100% - 2.4vh);
+    min-height: 10vh;
+    font-size: 1.4vh;
+    display: block;
+    align-items: center;
+    justify-content: left;
+    background-color: #f5f5f5;
+}
+  
+  
+#courses li:last-child {
+    margin-bottom: -3vh;
+}
+
+ul {
+    list-style: none;
+}
+  
+li {
+    margin: 0 0;
+}
+
+/*add hover effect to all list elements*/
+li:hover {
+    background-color: #e0e0e0;
+}
