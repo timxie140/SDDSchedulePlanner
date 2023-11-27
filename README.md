@@ -11,3 +11,5 @@ A PC/Laptop with either Mac OS or Windows 10/11 installed, and google chrome ins
 
 ## Access
 Visit [Schedule Planner](https://ruik5th.com), and you can begin to design your schedule for a easier semester!
+
+Thanks for using our schedule planner!
