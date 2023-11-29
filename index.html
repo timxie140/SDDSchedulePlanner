@@ -1,52 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Schedule Planner</title>
-	<link rel="stylesheet" type="text/css" href="resource/css/welcome_style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Planner</title>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="icon" href="public/icon/R5-favicon.png" type="image/png">
 </head>
+
 <body>
-	<main class="text-white">
-		<canvas id="check"></canvas>
-		<h1 id="title"><a href="#siteDesc">Schedule Planner</a></h1>
-		<p id="titleSubText"><a href="#siteDesc">Click to begin!</a></p>
+    <div class = "header-container">
+        <div id="title-navigation-icon">
+            <img src="public/icon/R5-header.png" alt="Website Icon" id="main-icon">
+            <h1 id = "main-title">Schedule Planner</h1>
+            <h1 id = "your-schedule">Your Schedule</h1>
+            <h1 id="export-schedule" onclick="exportToPNG()">Export Your Schedule</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Enter Course Name/Code">
+            <span id="search-text-width"></span>
+            <button id="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div id="major-panel">
+            <ul id="majors">
+                <li id="ADMN" class="major">Administrative (ADMN)</li>
+                <li id="USAF" class="major">Aerospace Studies (Air Force ROTC)</li>
+                <li id="ARCH" class="major">Architecture (ARCH)</li>
+                <li id="ARTS" class="major">Arts (ARTS)</li>
+                <li id="ASTR" class="major">Astronomy (ASTR)</li>
+                <li id="BCBP" class="major">Biochemistry and Biophysics (BCBP)</li>
+                <li id="BIOL" class="major">Biology (BIOL)</li>
+                <li id="BMED" class="major">Biomedical Engineering (BMED)</li>
+                <li id="BUSN" class="major">Business (BUSN)</li>
+                <li id="CIVL" class="major">Civil Engineering (CIVL)</li>
+                <li id="CHME" class="major">Chemical Engineering (CHME)</li>
+                <li id="CHEM" class="major">Chemistry (CHEM)</li>
+                <li id="COGS" class="major">Cognitive Science (COGS)</li>
+                <li id="COMM" class="major">Communication (COMM)</li>
+                <li id="CSCI" class="major">Computer Science (CSCI)</li>
+                <li id="ECON" class="major">Economic (ECON)</li>
+                <li id="ECSE" class="major">Electrical, Computer, and Systems Engineering (ECSE)</li>
+                <li id="ENGR" class="major">Engineering (ENGR)</li>
+                <li id="ESCI" class="major">Engineering Science (ESCI)</li>
+                <li id="ENVE" class="major">Environmental Engineering (ENVE)</li>
+                <li id="LANG" class="major">Foreign Languages (LANG)</li>
+                <li id="GSAS" class="major">Games and Simulation Arts and Sciences (GSAS)</li>
+                <li id="INQR" class="major">HASS Inquiry (INQR)</li>
+                <li id="ISYE" class="major">Industrial and Systems Engineering (ISYE)</li>
+                <li id="ITWS" class="major">Information Technology and Web Science (ITWS)</li>
+                <li id="IHSS" class="major">Interdisciplinary Humanities and Social Sciences (IHSS)</li>
+                <li id="ISCI" class="major">Interdisciplinary Science (ISCI)</li>
+                <li id="LGHT" class="major">Lighting (LGHT)</li>
+                <li id="LITR" class="major">Literature (LITR)</li>
+                <li id="MGMT" class="major">Management (MGMT)</li>
+                <li id="MTLE" class="major">Materials Science and Engineering (MTLE)</li>
+                <li id="MATP" class="major">Mathematical Programming, Probability, and Statistics (MATP)</li>
+                <li id="MATH" class="major">Mathematics (MATH)</li>
+                <li id="MANE" class="major">Mechanical, Aerospace, and Nuclear Engineering (MANE)</li>
+                <li id="USAR" class="major">Military Science (Army ROTC) (USAR)</li>
+                <li id="USNA" class="major">Naval Science (Navy ROTC) (USNA)</li>
+                <li id="PHIL" class="major">Philosophy (PHIL)</li>
+                <li id="PHYS" class="major">Physics (PHYS)</li>
+                <li id="PSYC" class="major">Psychology (PSYC)</li>
+                <li id="STSO" class="major">Science, Technology, and Society (STSO)</li>
+                <li id="WRIT" class="major">Writing (WRIT)</li>
+            </ul>
+        </div>
+        <div class="course-panel">
+                <ul id="courses">
+                    <!-- Courses will be loaded here dynamically -->
+                </ul>
 
-	</main>
-	<div id="siteDesc">
-		<h1 id="homeHeader">What is SchedulePlanner?</h1>
+        </div>
+    </div>
 
-		<div id="rateClassSection">
-			<div class="sectionLeftSide">
-				<h2 id="rateHeader">Rate Classes</h2>
-				<p class="moreSubText">You have the ability to rate courses. This helps Rensselaer students learn about the workload of potential future classes. You must be an RPI student in order to rate a class. Simply just login and input the CRN of the course you'd like to rate. </p>
-				<a class="clickRedirect" href="rate.php">Click here to rate a course</a>
-			</div>
-		</div>
+    <div class="search-result-container hidden">
+        <ul id="search-results">
+            <!-- Search results will be loaded here dynamically -->
+        </ul>
+    </div>
 
-		<div id="viewClassSection">
-			<div class="sectionLeftSide">
-				<h3 id="viewHeader">View Classes</h3>
-				<p class="moreSubText">You have the ability to look up any course. You can input the course name or course code to find course(s) you desired. And you will then be able to add them to your schedule.</p>
-				<a class="clickRedirect" href="view.php">Click here to view a course</a>
-			</div>
-		</div>
+    <div class="your-schedule-container hidden">
+        <div class="calendar" id="whole-calender">
+            <div class="days">
+                <div class="odd-day" data-date="Monday">Monday</div>
+                <div class="even-day" data-date="Tuesday">Tuesday</div>
+                <div class="odd-day" data-date="Wednesday">Wednesday</div>
+                <div class="even-day" data-date="Thursday">Thursday</div>
+                <div class="odd-day" data-date="Friday">Friday</div>
+                <div class="even-day" data-date="Saturday">Saturday</div>
+                <div class="odd-day" data-date="Sunday">Sunday</div>
+            </div>
+            <div class="add-personal-event">
+                <button class="add-personal-event-button" onclick="openAddEventPanel()">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div id="addEventPanel" class="add-event-panel hidden">
+                    <div id="addEventPanelHeader">Add Personal Event</div>
+                    <button class="personal-event-close-button" onclick="closeAddEventPanel()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="form-group">
+                        <label for="input-event-title">Event Title:</label>
+                        <input type="text" id="input-event-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="select-day">Event Day:</label>
+                        <select id="select-day">
+                            <option value="none" selected disabled>Select Day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-start-time">Event Start Time(e.g. 13:00):</label>
+                        <input type="time" id="input-event-start-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-end-time">Event End Time(e.g. 15:00):</label>
+                        <input type="time" id="input-event-end-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-description">Event Description:</label>
+                        <textarea id="input-event-description"></textarea>
+                    </div>
+                    <button class="add-personal-event-button-on-panel" id="add-event-button" disabled onclick="addPersonalEvent()">Add Event</button>
+                </div>
+            </div>
+            <div class="calendar-content">
+                <div class="time-column">
+                    <div class="hour">06:00</div>
+                    <div class="hour">07:00</div>
+                    <div class="hour">08:00</div>
+                    <div class="hour">09:00</div>
+                    <div class="hour">10:00</div>
+                    <div class="hour">11:00</div>
+                    <div class="hour">noon</div>
+                    <div class="hour">13:00</div>
+                    <div class="hour">14:00</div>
+                    <div class="hour">15:00</div>
+                    <div class="hour">16:00</div>
+                    <div class="hour">17:00</div>
+                    <div class="hour">18:00</div>
+                    <div class="hour">19:00</div>
+                    <div class="hour">20:00</div>
+                    <div class="hour">21:00</div>
+                    <div class="hour">22:00</div>
+                    <div class="hour">23:00</div>
+                    <div class="hour">Midnight</div>
+                </div>
+                <div class="events" id="all-events-for-schedule">
+                    <!-- Event will be loaded here dynamically -->
+                </div>
+            </div>
+            <button id="clear-schedule-button" onclick="clearSchedule()">Clear All Schedule</button>
+        </div>   
+    </div>
+    <div id="all-notifications">
+        <div id="add-personal-event-notification" class="notification hidden">
+            Event added successfully!
+        </div>
+        <div id="add-course-notification" class="notification hidden">
+            Course added successfully!
+        </div>
+        <div id="same-course-notification" class="notification hidden">
+            This course is already in the schedule!
+        </div>
+        <div id="same-personal-event-notification" class="notification hidden">
+            This event is already in the schedule!
+        </div>
+        <div id="conflict-course-notification" class="notification hidden">
+            There is a conflict with this course! See conflict in schedule!
+        </div>
+        <div id="no-add-event-due-to-conflict-event-notification" class="notification hidden">
+            Can't add event/course for now, resolve any conflict before proceeding!
+        </div>
+        <div id="conflict-resolved-notification" class="notification hidden">
+            Conflict resolved!
+        </div>
+        <div id="schedule-cleared-notification" class="notification hidden">
+            Schedule cleared!
+        </div>
+        <div id="multiple-conflict-notification" class="notification hidden">
+            There are multiple conflicts in the schedule! Event can't be added!
+        </div>
+        <div id="take-rest-notification" class="notification hidden">
+            Bruh, really? Take a rest!
+        </div>
+        <div id="no-add-event-due-to-no-time-slot-notification" class="notification hidden">
+            Can't add event/course, no time slot available!
+        </div>
+        <div id="no-mimic-course-notification" class="notification hidden">
+            Don't mimic an existing course in schedule!
+        </div>
+    </div>
 
-		<div id="analyzeScheduleSection">
-			<div class="sectionLeftSide">
-				<h3 id="analyzeHeader">Analyze Schedule</h3>
-				<p class="moreSubText">You have the ability to view up to 6 courses' ratings with in-depth analysis. Upon entering up to 6 CRNs, you are given the information most crucial for each course. You will also have a average difficulty and cumulative workload based on the course CRN(s) you have inputted.</p>
-				<a class="clickRedirect" href="analysis.php">Click here to analyze your schedule</a>
-			</div>
-		</div>
+    <div id="rickRoll" class="hidden">
+        <!-- Rick Roll GIF -->
+        <img src="public/icon/rick-roll.gif" alt="Rick Roll" style="width: 50%;">
+    </div>
 
-	</div>
-
-
-
-	<script src="resource/js/welcome_main.js"></script>
-	<script src="resource/js/jquery-3.6.1.min.js"></script>
+    <script src="public/js/ConvertedCourse.js"></script>
+    <script src="public/js/notification.js"></script>
+    <script src="public/js/context_menu.js"></script>
+    <script src="public/js/events.js"></script>
+    <script src="public/js/store_Load_events.js"></script>
+    <script src="public/js/search.js"></script>
+    <script src="public/js/page_switch_and_main_page.js"></script>
+    <script src="public/js/export_to_png.js"></script>
+    <script src="public/js/draggable_element.js"></script>
+    <script src="public/js/html2canvas.js"></script>
+    <script src="https://kit.fontawesome.com/cf875df07b.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
+
