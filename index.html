@@ -15,6 +15,14 @@
             <img src="public/icon/R5-header.png" alt="Website Icon" id="main-icon">
             <h1 id = "main-title">Schedule Planner</h1>
             <h1 id = "your-schedule">Your Schedule</h1>
+            <h1 id="export-schedule" onclick="exportToPNG()">Export Your Schedule</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Enter Course Name/Code">
+            <span id="search-text-width"></span>
+            <button id="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </div>
     </div>
     
@@ -89,6 +97,47 @@
                 <div class="even-day" data-date="Saturday">Saturday</div>
                 <div class="odd-day" data-date="Sunday">Sunday</div>
             </div>
+            <div class="add-personal-event">
+                <button class="add-personal-event-button" onclick="openAddEventPanel()">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div id="addEventPanel" class="add-event-panel hidden">
+                    <div id="addEventPanelHeader">Add Personal Event</div>
+                    <button class="personal-event-close-button" onclick="closeAddEventPanel()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="form-group">
+                        <label for="input-event-title">Event Title:</label>
+                        <input type="text" id="input-event-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="select-day">Event Day:</label>
+                        <select id="select-day">
+                            <option value="none" selected disabled>Select Day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-start-time">Event Start Time(e.g. 13:00):</label>
+                        <input type="time" id="input-event-start-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-end-time">Event End Time(e.g. 15:00):</label>
+                        <input type="time" id="input-event-end-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-event-description">Event Description:</label>
+                        <textarea id="input-event-description"></textarea>
+                    </div>
+                    <button class="add-personal-event-button-on-panel" id="add-event-button" disabled onclick="addPersonalEvent()">Add Event</button>
+                </div>
+            </div>
             <div class="calendar-content">
                 <div class="time-column">
                     <div class="hour">06:00</div>
@@ -115,9 +164,64 @@
                     <!-- Event will be loaded here dynamically -->
                 </div>
             </div>
+            <button id="clear-schedule-button" onclick="clearSchedule()">Clear All Schedule</button>
         </div>   
     </div>
+    <div id="all-notifications">
+        <div id="add-personal-event-notification" class="notification hidden">
+            Event added successfully!
+        </div>
+        <div id="add-course-notification" class="notification hidden">
+            Course added successfully!
+        </div>
+        <div id="same-course-notification" class="notification hidden">
+            This course is already in the schedule!
+        </div>
+        <div id="same-personal-event-notification" class="notification hidden">
+            This event is already in the schedule!
+        </div>
+        <div id="conflict-course-notification" class="notification hidden">
+            There is a conflict with this course! See conflict in schedule!
+        </div>
+        <div id="no-add-event-due-to-conflict-event-notification" class="notification hidden">
+            Can't add event/course for now, resolve any conflict before proceeding!
+        </div>
+        <div id="conflict-resolved-notification" class="notification hidden">
+            Conflict resolved!
+        </div>
+        <div id="schedule-cleared-notification" class="notification hidden">
+            Schedule cleared!
+        </div>
+        <div id="multiple-conflict-notification" class="notification hidden">
+            There are multiple conflicts in the schedule! Event can't be added!
+        </div>
+        <div id="take-rest-notification" class="notification hidden">
+            Bruh, really? Take a rest!
+        </div>
+        <div id="no-add-event-due-to-no-time-slot-notification" class="notification hidden">
+            Can't add event/course, no time slot available!
+        </div>
+        <div id="no-mimic-course-notification" class="notification hidden">
+            Don't mimic an existing course in schedule!
+        </div>
+    </div>
 
+    <div id="rickRoll" class="hidden">
+        <!-- Rick Roll GIF -->
+        <img src="public/icon/rick-roll.gif" alt="Rick Roll" style="width: 50%;">
+    </div>
+
+    <script src="public/js/ConvertedCourse.js"></script>
+    <script src="public/js/notification.js"></script>
+    <script src="public/js/context_menu.js"></script>
+    <script src="public/js/events.js"></script>
+    <script src="public/js/store_Load_events.js"></script>
+    <script src="public/js/search.js"></script>
+    <script src="public/js/page_switch_and_main_page.js"></script>
+    <script src="public/js/export_to_png.js"></script>
+    <script src="public/js/draggable_element.js"></script>
+    <script src="public/js/html2canvas.js"></script>
+    <script src="https://kit.fontawesome.com/cf875df07b.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
