@@ -3,10 +3,24 @@
  */
 class ContextMenuManager {
     constructor() {
-        // Listen for the right-click event to show the custom context menu
+        this.observers = [];
         document.addEventListener('contextmenu', this.handleContextMenu.bind(this));
-        // Listen for the left-click event to remove the context menu
         document.addEventListener('click', this.handleClickOutsideMenu.bind(this));
+    }
+
+    // Subscribe an observer
+    subscribe(observerFunction) {
+        this.observers.push(observerFunction);
+    }
+
+    // Unsubscribe an observer
+    unsubscribe(observerFunction) {
+        this.observers = this.observers.filter(observer => observer !== observerFunction);
+    }
+
+    // Notify all observers about the event deletion
+    notifyObservers(data) {
+        this.observers.forEach(observerFunction => observerFunction(data));
     }
 
     /**
@@ -64,25 +78,9 @@ class ContextMenuManager {
      * @param {Element} target - The target event element to delete.
      */
     handleDeleteEvent(target) {
-        if(target.classList.contains('conflict-event')){
-            restoreEventStyling();   
-        }else{
-            const allEventsContainer = document.getElementById('all-events-for-schedule');
-            const allEvents = allEventsContainer.querySelectorAll('div');
-
-            for (let i = 0; i < allEvents.length; i++) {
-                if (allEvents[i].getAttribute('data-crn') === target.getAttribute('data-crn') && allEvents[i].classList.contains('conflict-event')) {
-                    restoreEventStyling();
-                    break;
-                }
-            }
-        }
-        deleteMultipleTimeEvent(target.getAttribute('data-crn'));
-        target.remove();
+        // Notify observers (the actual deletion logic is handled by observers)
+        this.notifyObservers(target);
         this.removeExistingMenu();
-        storeAndLoad.storeEventsToLocalStorage();
-        storeAndLoad.reloadEventManager();
-        setReloadEventFalse();
     }
 
     /**
@@ -96,7 +94,61 @@ class ContextMenuManager {
             contextMenu.remove();
         }
     }
+
+    /**
+     * Ensures only one instance is created.
+     * @returns {ContextMenuManager} - The instance of the ContextMenuManager.
+     */
+    static get instance() {
+        // Create a new instance if one doesn't exist, 
+        // otherwise return the existing one
+        if (!this._instance) {
+            this._instance = new ContextMenuManager();
+        }
+        return this._instance;
+    }
 }
 
 // Instantiate ContextMenuManager
-new ContextMenuManager();
+const contextMenuManager = ContextMenuManager.instance;
+
+/**
+ *  Function to handle the event deletion, this will call the observers
+ * @param {Element} target - The target event element to delete.
+ */
+function onEventDeleted(target) {
+    target.remove();
+    deleteMultipleTimeEvent(target.getAttribute('data-crn'));
+}
+
+/**
+ * Function to handle the UI restoration after the event deletion,
+ * It has the logic to find which event to restore then call the observers
+ * @param {Element} target 
+ */
+function onEventDeletedUIRestore(target) {
+    if(target.classList.contains('conflict-event')){
+            restoreEventStyling();   
+    }else{
+        const allEventsContainer = document.getElementById('all-events-for-schedule');
+        const allEvents = allEventsContainer.querySelectorAll('div');
+
+        for (let i = 0; i < allEvents.length; i++) {
+            if (allEvents[i].getAttribute('data-crn') === target.getAttribute('data-crn') && allEvents[i].classList.contains('conflict-event')) {
+                restoreEventStyling();
+                break;
+            }
+        }
+    }
+}
+
+function onEventDeletedUpdateStorage() {
+    storeAndLoad.storeEventsToLocalStorage();
+    storeAndLoad.reloadEventManager();
+    setReloadEventFalse();
+}
+
+// Subscribe the observer to the context menu manager
+contextMenuManager.subscribe(onEventDeleted);
+contextMenuManager.subscribe(onEventDeletedUIRestore);
+contextMenuManager.subscribe(onEventDeletedUpdateStorage);
