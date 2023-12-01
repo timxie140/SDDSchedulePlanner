@@ -582,6 +582,18 @@ function checkForConflict(event) {
         }
     }
 
+    eachDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    let counter = 0;
+    //for loop to calculate if a event is added
+    for (let i = 0; i < eachDay.length; i++) {
+        for (let j = 0; j < eventManager.getDaylength(eachDay[i]); j++) {
+            //if the event is added, then check for conflict
+            if (eventManager.getDay(eachDay[i])[j].crn !== 'none' && eventManager.getDay(eachDay[i])[j].title === title) {
+                counter += 1;
+            }
+        }
+    }
+
     eventManager.getDay(day).forEach(event => {
         if (event.title !== newEvent.title) {
             if (event.startTime < newEvent.endTime && newEvent.startTime < event.endTime) {
@@ -609,7 +621,7 @@ function checkForConflict(event) {
             }
         }else{
             //check for same course/event is added
-            if (newEvent.type !== 'personal' && event.crn === newEvent.crn && session_counter === event.session) {
+            if (newEvent.type !== 'personal' && event.crn === newEvent.crn && ((session_counter === event.session) || (counter === event.session))) {
                 conflict = true;
                 other_event = event.title;
             }else if (newEvent.crn === 'none' && event.crn === 'none') {

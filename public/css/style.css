@@ -1,287 +1,545 @@
-/* For all header */
+/* Header styling */
 .header-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #bed8fa;
-    height: 9.5vh;
+  /* Flex layout for horizontal alignment and centering */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #bed8fa; /* Light blue background for header */
+  height: 9.5vh; /* Height relative to viewport height */
 }
 
+/* Navigation icon in the title bar */
 #title-navigation-icon {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #title-navigation-icon img {
-    width: 5vh;
-    height: 5vh;
-    margin-left: 3.5vh;
-    margin-top: -1vh;
-    cursor: pointer;
+  width: 5vh; /* Icon size relative to viewport height */
+  height: 5vh;
+  margin-left: 3.5vh; /* Spacing to the left */
+  margin-top: -1vh; /* Adjustment for alignment */
+  cursor: pointer; /* Cursor changes to pointer to indicate clickability */
 }
 
+/* Main title styling */
 #main-title {
-    font-size: 3vh; 
-    font-weight: bold;
-    cursor: pointer;
-    text-align: left; 
-    text-shadow: 1px 1px 2px #aaa; 
-    margin: 3vh 1.5vh; 
+  font-size: 3vh; /* Relative font size */
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  text-shadow: 1px 1px 2px #aaa; /* Subtle shadow for depth */
+  margin: 3vh 1.5vh; /* Spacing around the title */
 }
 
-#your-schedule{
-    font-size: 2.3vh; 
-    font-weight: bold; 
-    cursor: pointer;
-    text-align: left; 
-    text-shadow: 1px 1px 2px #aaa; 
-    margin: 3vh 1.5vh; 
+#main-title:hover {
+  color: #323233; /* Color change on hover for interactivity */
 }
 
-/* For body */
+/* Additional navigation items styling */
+#your-schedule, #export-schedule {
+  font-size: 2.3vh; /* Relative font size */
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  text-shadow: 1px 1px 2px #aaa;
+  margin: 3vh 1.5vh; /* Consistent margin with the main title */
+}
+
+#your-schedule:hover, #export-schedule:hover {
+  color: #323233; /* Same hover effect as the main title */
+}
+
+/* Search functionality and results container styling */
+.search-result-container {
+  display: flex;
+  width: 100%;
+  height: 89.1vh; /* Remaining height after accounting for the header */
+  overflow-y: auto; /* Enables vertical scrolling */
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 0.5vh; /* Small top margin */
+}
+
+/* Search results list styling */
+#search-results {
+  width: calc(100% - 2vh); /* Full width minus margins */
+  padding: 0;
+  margin: 0;
+  margin-left: -1vh; /* Align with the left edge */
+  position: relative;
+}
+
+#search-results li {
+  /* List item styling for search results */
+  list-style-type: none;
+  padding: 0.8vh; /* Padding for spacing */
+  margin-bottom: 0.4vh; /* Margin between items */
+  border: 1px solid #e0e0e0; /* Light border for separation */
+  border-radius: 0.4vh; /* Slightly rounded edges */
+  cursor: pointer; /* Indicates item is clickable */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+  width: 100%;
+  min-height: 10vh; /* Minimum height for visibility */
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5; /* Light background for items */
+}
+
+/* Search bar positioning and styling */
+.search-bar {
+  position: absolute;
+  align-items: center;
+  top: 2.5vh;
+  right: 1.5vh;
+}
+
+/* Search input styling */
+#search-input {
+  font-size: 1.7vh;
+  width: 0; /* Initially hidden */
+  overflow-x: auto; /* Allows horizontal scrolling */
+  border: none;
+  outline: none;
+  padding: 0.4vh;
+  background-color: transparent;
+  transition: width 0.3s ease-in-out; /* Smooth transition for width */
+}
+
+/* Search button styling */
+#search-button {
+  padding: 0.4vh;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+#search-button:focus {
+  outline: none; /* Removes focus outline for cleaner look */
+}
+
+#search-button i {
+  font-size: 2.7vh; /* Icon size */
+}
+
+#search-text-width {
+  display: inline-block;
+  visibility: hidden; /* Hidden but takes up space for measuring */
+  position: absolute;
+  white-space: nowrap; /* Prevents wrapping */
+}
+
+/* Body and main container styling */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0px;
-    box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Default font */
+  margin: 0px; /* Reset default margin */
+  box-sizing: border-box; /* Border box model for easier dimension calculations */
 }
 
-
-/* For container that include major and courses list */
+/* Major and courses list container styling */
 .main-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between; /* Space elements evenly */
 }
-  
+
 #major-panel {
-    margin-top: 0.8vh; 
-    width: 46vh; 
-    border: 1px solid #e0e0e0; /* Adds a border around the entire course list */
-    border-radius: 0.4vh; /* Rounded edges */
-    box-shadow: 2px 2px 0.4vh rgba(0, 0, 0, 0.1); /* A subtle shadow */
-    overflow: hidden; /* ensure no child element will overflow */
-    height: 87vh;
-    overflow-y: auto;    /* This allows vertical scrolling */
-    padding: 0.8vh; 
-    margin-left: 3vh;
+  /* Styling for the major panel */
+  margin-top: 0.8vh;
+  width: 46vh;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.4vh;
+  box-shadow: 2px 2px 0.4vh rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 87vh;
+  overflow-y: auto;
+  padding: 0.8vh;
+  margin-left: 3vh;
 }
-  
+
 #majors {
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Removes default margin */
-    font-family: Arial, sans-serif;
-    font-size: 1.55vh;
-    list-style-type: none; /* Removes the default bullet points */
+  /* Styling for the majors list */
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1.55vh;
+  list-style-type: none;
 }
 
 #majors li {
-    padding: 0.8vh 1.2vh; /* Adds spacing inside each list item */
-    cursor: pointer; 
-    border: 1px solid #e0e0e0; /* Adds a bottom border to each list item */
-    border-radius: 0.4vh;
-    margin-bottom: 0.7vh;
-    transition: background-color 0.3s ease; /* This will smooth the background color change on hover */
+  /* Styling for each major list item */
+  padding: 0.8vh 1.2vh;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.4vh;
+  margin-bottom: 0.7vh;
+  transition: background-color 0.3s ease;
 }
-  
+
 #majors li:last-child {
-    margin-bottom: 0; /* Removes the bottom margin on the last list item */
+  margin-bottom: 0; /* No bottom margin for the last item */
 }
-  
+
 .major-selected {
-    background-color: #c0bebe;
+  background-color: #c0bebe; /* Highlight color for selected major */
 }
 
 .course-panel {
-    justify-content: center; 
-    align-items: center;     /* Vertically centers the content */
-    width: calc(100% - 47vh);
-    height: 88.7vh; 
-    overflow: hidden;
-    overflow-y: auto;
-    box-sizing: border-box;
-    position: relative; 
-    margin-top: 0.9vh;
-    margin-left: 0.8vh;
-    right: 0;
+  /* Styling for the courses panel */
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 47vh);
+  height: 88.7vh;
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 0.9vh;
+  margin-left: 0.8vh;
+  right: 0;
 }
-  
+
 #courses {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    left: 0vh;
+  /* Styling for the courses list */
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: 0vh;
 }
-  
-.course-panel li{
-    list-style-type: none;
-    padding: 1vh;
-    margin-bottom: 0.4vh;
-    border: 1px solid #e0e0e0;
-    border-radius: 0.4vh;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: calc(100% - 2.4vh);
-    min-height: 10vh;
-    font-size: 1.4vh;
-    display: block;
-    align-items: center;
-    justify-content: left;
-    background-color: #f5f5f5;
+
+.course-panel li {
+  /* Styling for each course list item */
+  list-style-type: none;
+  padding: 1vh;
+  margin-bottom: 0.4vh;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.4vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 2.4vh);
+  min-height: 10vh;
+  font-size: 1.4vh;
+  display: block;
+  align-items: center;
+  justify-content: left;
+  background-color: #f5f5f5;
 }
-  
-  
+
 #courses li:last-child {
-    margin-bottom: -3vh;
+  margin-bottom: -3vh; /* Adjusts the bottom margin of the last course */
+}
+
+.no-course-notification {
+  /* Styling for no-course notification */
+  padding: 2.3vh;
+  width: 100%;
+  margin-left: 3vh;
+  margin-top: 0;
+  border: 1px solid #ddd;
+  background-color: #e0e0e0;
+}
+
+.notification {
+  /* Generic notification styling */
+  position: fixed;
+  top: 0.8vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2vh 3vh;
+  background-color: #fab92e;
+  color: black;
+  border-radius: 0.4vh;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none; /* Utility class to hide elements */
+}
+
+.invisible {
+  visibility: hidden; /* Utility class to make elements invisible */
+  position: absolute;
 }
 
 ul {
-    list-style: none;
+  list-style: none; /* Removes default list styling */
 }
-  
+
 li {
-    margin: 0 0;
+  margin: 0 0;
 }
 
-/*add hover effect to all list elements*/
 li:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0; /* Hover effect for list items */
 }
 
-/* For search functionality and related */
-.search-result-container {
-    display: flex;
-    width: 100%;
-    height: 89.1vh; 
-    overflow-y: auto;
-    box-sizing: border-box;
-    position: relative; 
-    margin-top: 0.5vh;
-  }
-  
-  #search-results {
-    width: calc(100% - 2vh);
-    padding: 0;
-    margin: 0;
-    margin-left: -1vh;
-    position: relative;
-  }
-  
-  
-  #search-results li {
-    list-style-type: none;
-    padding: 0.8vh;
-    margin-bottom: 0.4vh;
-    border: 1px solid #e0e0e0;
-    border-radius: 0.4vh;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    min-height: 10vh;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    background-color: #f5f5f5;
-  }
-  
-  #search-results li:first-child {
-    margin-top: 0;
-  }
-
-.search-bar {
-    position: absolute;
-    align-items: center;
-    top: 2.5vh;
-    right: 1.5vh;
-  }
-  
-  #search-input {
-    font-size: 1.7vh;
-    width: 0;
-    overflow-x: auto;
-    border: none;
-    outline: none;
-    padding: 0.4vh;
-    background-color: transparent;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  #search-button {
-    padding: 0.4vh;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-  
-  #search-button:focus {
-    outline: none;
-  }
-  
-  #search-button i {
-    font-size: 2.7vh;
-  }
-  
-  #search-text-width {
-    display: inline-block; 
-    visibility: hidden; 
-    position: absolute;
-    white-space: nowrap; /* Ensures the text doesn't wrap to the next line */
-  }
-
-  /* Below is for scheduler */
+/* Scheduler styling */
 .calendar {
-    display: flex;
-    position: relative;
-    width: 100%;
-    height: 90vh;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 90vh;
 }
-  
+
 .days {
-    display: flex;
-    flex: 1;
-    width: 100%;
-    height: 3vh;
-    text-align: center;
-    line-height: 3vh;
-    background-color: #e7e5e5;
+  /* Styling for day labels */
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 3vh;
+  text-align: center;
+  line-height: 3vh;
+  background-color: #e7e5e5;
 }
-  
+
 [data-date="Monday"] {
-    margin-left: 5.7vh;
+  margin-left: 5.7vh; /* Specific adjustment for Monday label */
 }
-  
+
+/* Odd Day Styles */
 .odd-day {
-    flex: 1;
-    border: 1px solid #ccc;
-    height: 100%;
-    position: relative;
-    background-color: #9c9b9b;
-    
+  flex: 1; /* Allows the element to grow and fill available space */
+  border: 1px solid #ccc; /* Light grey border */
+  height: 100%; /* Full height */
+  position: relative; /* Positioning context for absolute children */
+  background-color: #9c9b9b; /* Dark grey background */
 }
-  
+
+/* Even Day Styles */
 .even-day {
-    flex: 1;
-    border: 1px solid #ccc;
-    height: 100%;
-    position: relative;
-    background-color: #e7e5e5;
+  flex: 1; 
+  border: 1px solid #ccc;
+  height: 100%;
+  position: relative;
+  background-color: #e7e5e5; /* Light grey background */
 }
-  
+
+/* Time Column Styles */
 .time-column {
-    position: absolute;
-    width: 5.5vh;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+  position: absolute;
+  width: 5.5vh; /* Fixed width */
+  background-color: #f5f5f5; /* Very light grey background */
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
-  
+
+/* Hour Marker Styles */
 .hour {
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-    font-size: 1.4vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1; 
+  border-bottom: 1px solid #ccc; /* Separator for hours */
+  font-size: 1.4vh; /* Font size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Calendar Content Container */
+.calendar-content {
+  display: flex;
+  position: absolute;
+  border-bottom: 1px solid #ccc;
+  bottom: 4vh;
+  width: 100%;
+  height: calc(88vh - 5vh); /* Calculated height */
+}
+
+/* Events Grid */
+.events {
+  position: absolute;
+  width: calc(100% - 5.7vh); /* Width adjusted for time column */
+  height: calc(88vh - 5vh);
+  bottom: 0;
+  right: 0;
+  background:
+    repeating-linear-gradient(to right, #ccc, #ccc 1px, transparent 1px, transparent 14.28%),
+    repeating-linear-gradient(to bottom, #ccc, #ccc 1px, transparent 1px, transparent 5.26%);
+  background-size: 100% 100%;
+}
+
+/* Individual Event Style */
+.event {
+  position: absolute;
+  z-index: 2; /* Ensures events are on top */
+  overflow: hidden; /* Hides content that overflows */
+  overflow-y: auto; /* Allows vertical scrolling */
+  padding: 0.4vh;
+  box-sizing: border-box; /* Includes padding and border in element's width and height */
+  font-size: 1.3vh;
+  line-height: 1.2;
+}
+
+/* Conflict Event Style */
+.conflict-event {
+  background-color: #f7a8a8; /* Light red for conflicts */
+  border: 1px solid #f77a7a; /* Darker red border */
+}
+
+/* Clear Schedule Button */
+#clear-schedule-button {
+  position: absolute;
+  padding: 0.5vh 1.45vh;
+  height: 2.5vh;
+  bottom: 1.4vh;
+  left: 0;
+  border: none;
+  border-radius: 0.4vh;
+  background-color: #4542f7; /* Blue background */
+  color: white;
+  font-size: 1.6vh;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for Clear Schedule Button */
+#clear-schedule-button:hover {
+  background-color: #bed8fa; /* Light blue on hover */
+  color: black;
+}
+
+/* Add Personal Event Button */
+.add-personal-event-button {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  padding: 0.45vh 2vh;
+  border: none;
+  background-color: #4542f7; /* Blue background */
+  color: white;
+  font-size: 2vh;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for Add Personal Event Button */
+.add-personal-event-button:hover {
+  background-color: #bed8fa; /* Light blue on hover */
+  color: black;
+}
+
+/* Panel for adding personal events */
+.add-event-panel {
+  position: absolute;
+  width: 22vh; /* Fixed width */
+  top: 50%; /* Centered vertically */
+  left: 50%; /* Centered horizontally */
+  transform: translate(-50%, -50%); /* Adjust for perfect centering */
+  background-color: #FFF; /* White background */
+  padding: 1.6vh;
+  box-shadow: 0 0 0.8vh rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  z-index: 900; /* High z-index to be on top */
+}
+
+/* Header for Add Event Panel */
+#addEventPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6vh;
+  font-size: 1.6vh;
+  font-weight: bold;
+  cursor: move; /* Indicates the header is draggable */
+}
+
+/* Close button in personal event panel */
+.personal-event-close-button {
+  position: absolute;
+  top: 1.2vh;
+  right: 1.2vh;
+  cursor: pointer;
+  font-size: 1.6vh;
+  font-weight: bold;
+}
+
+/* Hover effect for close button */
+.personal-event-close-button:hover {
+  color: red; /* Red color on hover for better UX */
+}
+
+/* Style for disabled state of the add event button on the panel */
+.add-personal-event-button-on-panel:disabled {
+  background-color: #302f2f; /* Gray color for disabled state */
+  cursor: not-allowed; /* Shows a 'not allowed' cursor */
+  padding: 0.8vh 1.45vh;
+  border: none;
+  border-radius: 0.35vh;
+  font-size: 1.22vh;
+}
+
+/* Style for add event button on the panel */
+.add-personal-event-button-on-panel {
+  background-color: #4542f7; /* Blue background */
+  color: white;
+  padding: 0.8vh 1.45vh;
+  border: none;
+  border-radius: 0.35vh;
+  cursor: pointer;
+  font-size: 1.22vh;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for add event button */
+.add-personal-event-button-on-panel:not(:disabled):hover {
+  background-color: #bed8fa; /* Light blue on hover */
+  color: black;
+}
+
+/* Styles for form groups */
+.form-group {
+  margin-bottom: 1.6vh; /* Space below each form group */
+}
+
+/* Label styling */
+label {
+  display: block; /* Makes label a block element */
+  margin-bottom: 0.65vh; /* Space below the label */
+}
+
+/* Style for text inputs, time inputs, textareas, and selects */
+input[type="text"],
+input[type="time"],
+textarea,
+select {
+  width: 100%; /* Full width of the container */
+  padding: 0.65vh; /* Padding for better readability */
+  border: 1px solid #ccc; /* Light grey border */
+  box-sizing: border-box; /* Includes padding and border in width and height */
+}
+
+/* Style for custom context menu */
+.custom-context-menu {
+  position: fixed; /* Fixed position */
+  z-index: 11; /* Above most elements */
+}
+
+/* Style for delete event button */
+#delete-event-button {
+  background-color: #4542f7; /* Blue background */
+  color: white;
+  padding: 0.65vh 1.12vh;
+  border: none;
+  border-radius: 0.35vh;
+  cursor: pointer;
+  font-size: 1.28vh;
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+/* Hover effect for delete event button */
+#delete-event-button:hover {
+  background-color: #bed8fa; /* Light blue on hover */
+  color: black;
+}
+
+#rickRoll {
+  position: fixed;
+  left: 70%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 70vh;
+  pointer-events: none;
+  z-index: 10000;
 }
